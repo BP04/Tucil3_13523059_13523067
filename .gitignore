@@ -47,3 +47,5 @@ obj/
 /external
 /libs
 /vendor
+
+bin/
