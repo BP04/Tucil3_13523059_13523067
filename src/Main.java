@@ -18,7 +18,7 @@ public class Main {
                 System.out.println(row);
             }
 
-            SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+            SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
 
             solver.solve();
         } catch (IOException e) {
