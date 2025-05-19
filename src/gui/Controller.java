@@ -80,7 +80,7 @@ public class Controller {
         bottomControls.getChildren().addAll(uploadButton, startButton);
         rootPane.setBottom(bottomControls);
 
-        boardView = new BoardView(new char[1][1], 50); // Placeholder initially
+        boardView = new BoardView(new char[1][1], 50); 
         centerPane = new StackPane(boardView.getView());
         centerPane.setAlignment(Pos.CENTER);
         rootPane.setCenter(centerPane);
@@ -135,10 +135,8 @@ public class Controller {
             int[] ukuran = new int[2];
             int[] exitPos = new int[2];
 
-            // Read input board
             char[][] board = InputParser.readInput(fileName, ukuran, exitPos);
 
-            // Run solver based on selected algorithm
             if (algorithm.equals("UCS")) {
                 SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
                 solver.solve();
@@ -146,7 +144,6 @@ public class Controller {
                 SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
                 solver.solve();
             } else if (algorithm.equals("A*")) {
-                // Assuming you have SolverAStar with similar constructor (adjust if needed)
                 SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
                 solver.solve();
             } else {
