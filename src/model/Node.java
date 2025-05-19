@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Arrays;
 
 class Node {
@@ -174,4 +176,20 @@ class Node {
         }
         return sb.toString();
     }
+
+    public String getMove() {
+        return this.move;  // assuming you store the move string in a `move` field
+    }
+
+    public String getGridAsString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                sb.append(grid[i][j]);
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
+
 }

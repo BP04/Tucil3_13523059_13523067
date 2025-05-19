@@ -1,0 +1,209 @@
+Total moves: 22
+
+
+AAB..F
+..BCDF
+GPPCDF
+GH.III
+GHJ...
+LLJMM.
+
+
+Move C up 1
+AABC.F
+..BCDF
+GPP.DF
+GH.III
+GHJ...
+LLJMM.
+
+
+Move D up 1
+AABCDF
+..BCDF
+GPP..F
+GH.III
+GHJ...
+LLJMM.
+
+
+Move P right 2
+AABCDF
+..BCDF
+G..PPF
+GH.III
+GHJ...
+LLJMM.
+
+
+Move B down 2
+AA.CDF
+...CDF
+G.BPPF
+GHBIII
+GHJ...
+LLJMM.
+
+
+Move H up 1
+AA.CDF
+...CDF
+GHBPPF
+GHBIII
+G.J...
+LLJMM.
+
+
+Move G up 1
+AA.CDF
+G..CDF
+GHBPPF
+GHBIII
+..J...
+LLJMM.
+
+
+Move M right 1
+AA.CDF
+G..CDF
+GHBPPF
+GHBIII
+..J...
+LLJ.MM
+
+
+Move B up 1
+AA.CDF
+G.BCDF
+GHBPPF
+GH.III
+..J...
+LLJ.MM
+
+
+Move J up 1
+AA.CDF
+G.BCDF
+GHBPPF
+GHJIII
+..J...
+LL..MM
+
+
+Move M left 1
+AA.CDF
+G.BCDF
+GHBPPF
+GHJIII
+..J...
+LL.MM.
+
+
+Move L right 1
+AA.CDF
+G.BCDF
+GHBPPF
+GHJIII
+..J...
+.LLMM.
+
+
+Move H down 1
+AA.CDF
+G.BCDF
+G.BPPF
+GHJIII
+.HJ...
+.LLMM.
+
+
+Move M right 1
+AA.CDF
+G.BCDF
+G.BPPF
+GHJIII
+.HJ...
+.LL.MM
+
+
+Move G down 2
+AA.CDF
+..BCDF
+..BPPF
+GHJIII
+GHJ...
+GLL.MM
+
+
+Move H up 1
+AA.CDF
+..BCDF
+.HBPPF
+GHJIII
+G.J...
+GLL.MM
+
+
+Move A right 1
+.AACDF
+..BCDF
+.HBPPF
+GHJIII
+G.J...
+GLL.MM
+
+
+Move M left 1
+.AACDF
+..BCDF
+.HBPPF
+GHJIII
+G.J...
+GLLMM.
+
+
+Move G up 1
+.AACDF
+..BCDF
+GHBPPF
+GHJIII
+G.J...
+.LLMM.
+
+
+Move L left 1
+.AACDF
+..BCDF
+GHBPPF
+GHJIII
+G.J...
+LL.MM.
+
+
+Move J down 1
+.AACDF
+..BCDF
+GHBPPF
+GH.III
+G.J...
+LLJMM.
+
+
+Move I left 1
+.AACDF
+..BCDF
+GHBPPF
+GHIII.
+G.J...
+LLJMM.
+
+
+Move F down 3
+.AACD.
+..BCD.
+GHBPP.
+GHIIIF
+G.J..F
+LLJMMF
+
+
