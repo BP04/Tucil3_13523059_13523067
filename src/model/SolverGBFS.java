@@ -1,14 +1,12 @@
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Collections;
-import java.util.Arrays;
+package model;
 
-class SolverGBFS {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.PriorityQueue;
+
+public class SolverGBFS {
     char[][] startingGrid;
     HashMap<String, Integer> nodeToID;
     ArrayList<Node> nodes;
@@ -17,8 +15,10 @@ class SolverGBFS {
     int exitRow;
     int exitCol;
     int nodeID;
+    Heuristic heuristic;
+    int heuristicType = 0; // 0: distance, 1: blocker-distance
 
-    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol) {
+    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, int heuristicType) {
         this.startingGrid = new char[startingGrid.length][];
         for (int i = 0; i < startingGrid.length; ++i) {
             this.startingGrid[i] = Arrays.copyOf(startingGrid[i], startingGrid[i].length);
@@ -30,76 +30,8 @@ class SolverGBFS {
         this.exitRow = exitRow;
         this.exitCol = exitCol;
         nodeID = 0;
-    }
-
-    public int calculateHeuristic(Node node) {
-        int minR = actualHeight, maxR = -1, minC = actualWidth, maxC = -1;
-        for(int i = 0; i < actualHeight; ++i) {
-            for(int j = 0; j < actualWidth; ++j) {
-                if (node.getCell(i, j) == 'P') {
-                    minR = Math.min(minR, i);
-                    maxR = Math.max(maxR, i);
-                    minC = Math.min(minC, j);
-                    maxC = Math.max(maxC, j);
-                }
-            }
-        }
-        
-        boolean horizontal = (minR == maxR);
-        int length = horizontal ? (maxC - minC + 1) : (maxR - minR + 1);
-        int distance = 0;
-        Set<Character> blockers = new HashSet<>();
-
-        if (horizontal) {
-            if(exitRow != minR) {
-                return Integer.MAX_VALUE;
-            }
-
-            if(exitCol == actualWidth) {
-                distance = exitCol - maxC;
-                for(int c = maxC + 1; c < exitCol; c++) {
-                    char cell = node.getCell(minR, c);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            } 
-            else {
-                distance = minC - exitCol;
-                for(int c = 0; c < minC; c++) {
-                    char cell = node.getCell(minR, c);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            }
-        } 
-        else {
-            if(exitCol != minC) {
-                return Integer.MAX_VALUE;
-            }
-
-            if(exitRow == actualHeight) {
-                distance = exitRow - maxR;
-                for (int r = maxR + 1; r < exitRow; r++) {
-                    char cell = node.getCell(r, minC);
-                    if(cell != '.'){
-                        blockers.add(cell);
-                    }
-                }
-            } 
-            else {
-                distance = minR - exitRow;
-                for (int r = 0; r < minR; r++) {
-                    char cell = node.getCell(r, minC);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            }
-        }
-        
-        return distance + blockers.size();
+        this.heuristicType = heuristicType;
+        heuristic = new Heuristic(actualHeight, actualWidth, exitRow, exitCol, heuristicType);
     }
 
     public boolean isSolved(Node b) {
@@ -252,7 +184,7 @@ class SolverGBFS {
 
                                 String newNodeKey = newNode.getStringGrid();
                                 if (!nodeToID.containsKey(newNodeKey)) {
-                                    newNode.setH(calculateHeuristic(newNode));
+                                    newNode.setH(heuristic.calculateHeuristic(newNode));
                                     nodeID++;
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
@@ -310,7 +242,7 @@ class SolverGBFS {
 
                                 String newNodeKey = newNode.getStringGrid();
                                 if (!nodeToID.containsKey(newNodeKey)) {
-                                    newNode.setH(calculateHeuristic(newNode));
+                                    newNode.setH(heuristic.calculateHeuristic(newNode));
                                     nodeID++;
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());

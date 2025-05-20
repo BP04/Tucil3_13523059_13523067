@@ -1,6 +1,5 @@
-import model.InputParser;
-
 import java.io.IOException;
+import model.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,11 +13,13 @@ public class Main {
             // System.out.println("Width: " + ukuran[1]);
             // System.out.println("Exit Position: (" + exitPos[0] + ", " + exitPos[1] + ")");
 
-            for (char[] row : board) {
-                System.out.println(row);
-            }
+            // for (char[] row : board) {
+            //     System.out.println(row);
+            // }
 
-            SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+            // SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
+            SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 0);
+            // SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
 
             solver.solve();
         } catch (IOException e) {
