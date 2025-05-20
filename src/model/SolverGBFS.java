@@ -1,18 +1,10 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.LinkedList;
-import java.util.Collections;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class SolverGBFS {
     char[][] startingGrid;
@@ -23,9 +15,10 @@ public class SolverGBFS {
     int exitRow;
     int exitCol;
     int nodeID;
-    String filenameBase;
+    Heuristic heuristic;
+    int heuristicType = 0; // 0: distance, 1: blocker-distance
 
-    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, String filenameBase) {
+    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, int heuristicType) {
         this.startingGrid = new char[startingGrid.length][];
         for (int i = 0; i < startingGrid.length; ++i) {
             this.startingGrid[i] = Arrays.copyOf(startingGrid[i], startingGrid[i].length);
@@ -36,78 +29,9 @@ public class SolverGBFS {
         this.actualHeight = actualHeight;
         this.exitRow = exitRow;
         this.exitCol = exitCol;
-        this.filenameBase = filenameBase;
         nodeID = 0;
-    }
-
-    public int calculateHeuristic(Node node) {
-        int minR = actualHeight, maxR = -1, minC = actualWidth, maxC = -1;
-        for(int i = 0; i < actualHeight; ++i) {
-            for(int j = 0; j < actualWidth; ++j) {
-                if (node.getCell(i, j) == 'P') {
-                    minR = Math.min(minR, i);
-                    maxR = Math.max(maxR, i);
-                    minC = Math.min(minC, j);
-                    maxC = Math.max(maxC, j);
-                }
-            }
-        }
-        
-        boolean horizontal = (minR == maxR);
-        int length = horizontal ? (maxC - minC + 1) : (maxR - minR + 1);
-        int distance = 0;
-        Set<Character> blockers = new HashSet<>();
-
-        if (horizontal) {
-            if(exitRow != minR) {
-                return Integer.MAX_VALUE;
-            }
-
-            if(exitCol == actualWidth) {
-                distance = exitCol - maxC;
-                for(int c = maxC + 1; c < exitCol; c++) {
-                    char cell = node.getCell(minR, c);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            } 
-            else {
-                distance = minC - exitCol;
-                for(int c = 0; c < minC; c++) {
-                    char cell = node.getCell(minR, c);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            }
-        } 
-        else {
-            if(exitCol != minC) {
-                return Integer.MAX_VALUE;
-            }
-
-            if(exitRow == actualHeight) {
-                distance = exitRow - maxR;
-                for (int r = maxR + 1; r < exitRow; r++) {
-                    char cell = node.getCell(r, minC);
-                    if(cell != '.'){
-                        blockers.add(cell);
-                    }
-                }
-            } 
-            else {
-                distance = minR - exitRow;
-                for (int r = 0; r < minR; r++) {
-                    char cell = node.getCell(r, minC);
-                    if(cell != '.') {
-                        blockers.add(cell);
-                    }
-                }
-            }
-        }
-        
-        return distance + blockers.size();
+        this.heuristicType = heuristicType;
+        heuristic = new Heuristic(actualHeight, actualWidth, exitRow, exitCol, heuristicType);
     }
 
     public boolean isSolved(Node b) {
@@ -177,7 +101,7 @@ public class SolverGBFS {
         return false;
     }
 
-    public String getSolutionString(Node b) {
+    public void showSolution(Node b) {
         ArrayList<Node> path = new ArrayList<>();
         Node currentNode = b;
         while(currentNode.getParentID() != -1) {
@@ -187,36 +111,10 @@ public class SolverGBFS {
         path.add(currentNode);
 
         Collections.reverse(path);
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Total moves: ").append(path.size() - 1).append("\n\n");
-
         for(Node node : path) {
-            sb.append(node.getMove()).append("\n");
-            sb.append(node.getGridAsString()).append("\n\n");
-        }
-        return sb.toString();
-    }
-
-    public void showSolution(Node b) {
-        String solutionText = getSolutionString(b);
-        
-        System.out.println(solutionText);
-
-        try {
-            java.nio.file.Path outputDir = java.nio.file.Paths.get("test/output");
-            java.nio.file.Files.createDirectories(outputDir);
-
-            String filename = "test/output/" + filenameBase + ".txt";
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            writer.write(solutionText);
-            writer.close();
-
-            System.out.println("Solution saved to " + filename);
-        } catch (IOException e) {
-            System.err.println("Failed to save solution: " + e.getMessage());
+            node.printMove();
+            node.printGrid();
+            System.out.println();
         }
     }
 
@@ -286,15 +184,15 @@ public class SolverGBFS {
 
                                 String newNodeKey = newNode.getStringGrid();
                                 if (!nodeToID.containsKey(newNodeKey)) {
-                                    newNode.setH(calculateHeuristic(newNode));
+                                    newNode.setH(heuristic.calculateHeuristic(newNode));
                                     nodeID++;
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < i) {
-                                        newNode.setMove("Move " + pieceID + " up " + (i - k));
+                                        newNode.setMove("move " + pieceID + " up " + (i - k));
                                     }
                                     else {
-                                        newNode.setMove("Move " + pieceID + " down " + (k - i));
+                                        newNode.setMove("move " + pieceID + " down " + (k - i));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);
@@ -344,15 +242,15 @@ public class SolverGBFS {
 
                                 String newNodeKey = newNode.getStringGrid();
                                 if (!nodeToID.containsKey(newNodeKey)) {
-                                    newNode.setH(calculateHeuristic(newNode));
+                                    newNode.setH(heuristic.calculateHeuristic(newNode));
                                     nodeID++;
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < j) {
-                                        newNode.setMove("Move " + pieceID + " left " + (j - k));
+                                        newNode.setMove("move " + pieceID + " left " + (j - k));
                                     }
                                     else {
-                                        newNode.setMove("Move " + pieceID + " right " + (k - j));
+                                        newNode.setMove("move " + pieceID + " right " + (k - j));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);

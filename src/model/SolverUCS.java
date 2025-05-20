@@ -1,16 +1,11 @@
 package model;
 
-import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Collections;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SolverUCS { // In this case it's just regular BFS
     char[][] startingGrid;
@@ -21,9 +16,8 @@ public class SolverUCS { // In this case it's just regular BFS
     int exitRow;
     int exitCol;
     int nodeID;
-    String filenameBase;
 
-    public SolverUCS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, String filenameBase) {
+    public SolverUCS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol) {
         this.startingGrid = new char[startingGrid.length][];
         for (int i = 0; i < startingGrid.length; ++i) {
             this.startingGrid[i] = Arrays.copyOf(startingGrid[i], startingGrid[i].length);
@@ -34,7 +28,6 @@ public class SolverUCS { // In this case it's just regular BFS
         this.actualHeight = actualHeight;
         this.exitRow = exitRow;
         this.exitCol = exitCol;
-        this.filenameBase = filenameBase;
         nodeID = 0;
     }
 
@@ -105,7 +98,7 @@ public class SolverUCS { // In this case it's just regular BFS
         return false;
     }
 
-    public String getSolutionString(Node b) {
+    public void showSolution(Node b) {
         ArrayList<Node> path = new ArrayList<>();
         Node currentNode = b;
         while(currentNode.getParentID() != -1) {
@@ -115,39 +108,12 @@ public class SolverUCS { // In this case it's just regular BFS
         path.add(currentNode);
 
         Collections.reverse(path);
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Total moves: ").append(path.size() - 1).append("\n\n");
-
         for(Node node : path) {
-            sb.append(node.getMove()).append("\n");
-            sb.append(node.getGridAsString()).append("\n\n");
-        }
-        return sb.toString();
-    }
-
-    public void showSolution(Node b) {
-        String solutionText = getSolutionString(b);
-        
-        System.out.println(solutionText);
-
-        try {
-            java.nio.file.Path outputDir = java.nio.file.Paths.get("test/output");
-            java.nio.file.Files.createDirectories(outputDir);
-
-            String filename = "test/output/" + filenameBase + ".txt";
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            writer.write(solutionText);
-            writer.close();
-
-            System.out.println("Solution saved to " + filename);
-        } catch (IOException e) {
-            System.err.println("Failed to save solution: " + e.getMessage());
+            node.printMove();
+            node.printGrid();
+            System.out.println();
         }
     }
-
 
     public void solve() {
         Queue<Node> queue = new LinkedList<>();
@@ -220,10 +186,10 @@ public class SolverUCS { // In this case it's just regular BFS
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < i) {
-                                        newNode.setMove("Move " + pieceID + " up " + (i - k));
+                                        newNode.setMove("move " + pieceID + " up " + (i - k));
                                     }
                                     else {
-                                        newNode.setMove("Move " + pieceID + " down " + (k - i));
+                                        newNode.setMove("move " + pieceID + " down " + (k - i));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);
@@ -278,10 +244,10 @@ public class SolverUCS { // In this case it's just regular BFS
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < j) {
-                                        newNode.setMove("Move " + pieceID + " left " + (j - k));
+                                        newNode.setMove("move " + pieceID + " left " + (j - k));
                                     }
                                     else {
-                                        newNode.setMove("Move " + pieceID + " right " + (k - j));
+                                        newNode.setMove("move " + pieceID + " right " + (k - j));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);

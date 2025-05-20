@@ -1,16 +1,15 @@
 package model;
 
 import java.util.Arrays;
-
-class Node {
-    private char[][] grid;
+public class Node {
+    private final char[][] grid;
     private int g; // cost from start to current node
     private int h; // heuristic cost to goal
     private int ID;
     private int parentID;
     private String move;
 
-    Node(char[][] grid, int g, int h, int ID, int parentID, String move) {
+    public Node(char[][] grid, int g, int h, int ID, int parentID, String move) {
         this.grid = new char[grid.length][];
         for (int i = 0; i < grid.length; ++i) {
             this.grid[i] = Arrays.copyOf(grid[i], grid[i].length);
@@ -176,20 +175,4 @@ class Node {
         }
         return sb.toString();
     }
-
-    public String getMove() {
-        return this.move;  // assuming you store the move string in a `move` field
-    }
-
-    public String getGridAsString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                sb.append(grid[i][j]);
-            }
-            sb.append('\n');
-        }
-        return sb.toString();
-    }
-
 }
