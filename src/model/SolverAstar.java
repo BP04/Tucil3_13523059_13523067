@@ -110,12 +110,75 @@ public class SolverAstar {
         }
         path.add(currentNode);
 
+        System.out.println("Papan Awal");
+        currentNode.printGrid();
+
+        int moveCount = 0;
+
         Collections.reverse(path);
         for(Node node : path) {
+            moveCount++;
+            System.out.print("Gerakan " + moveCount + ": ");
             node.printMove();
             node.printGrid();
             System.out.println();
         }
+
+        Node lastNode = path.get(path.size() - 1);
+
+        int minR = actualHeight, maxR = -1, minC = actualWidth, maxC = -1;
+        for(int i = 0; i < actualHeight; ++i) {
+            for(int j = 0; j < actualWidth; ++j) {
+                if (lastNode.getCell(i, j) == 'P') {
+                    minR = Math.min(minR, i);
+                    maxR = Math.max(maxR, i);
+                    minC = Math.min(minC, j);
+                    maxC = Math.max(maxC, j);
+                }
+            }
+        }
+
+        if(exitCol == actualWidth) {
+            int length = maxC - minC + 1;
+            for(int c = minC; c <= maxC; ++c) {
+                lastNode.setCell(minR, c, '.');
+            }
+            for(int c = actualWidth - length; c < actualWidth; ++c) {
+                lastNode.setCell(minR, c, 'P');
+            }
+        }
+        else if(exitCol == -1) {
+            int length = maxC - minC + 1;
+            for(int c = minC; c <= maxC; ++c) {
+                lastNode.setCell(minR, c, '.');
+            }
+            for(int c = 0; c < length; ++c) {
+                lastNode.setCell(minR, c, 'P');
+            }
+        }
+        else if(exitRow == actualHeight) {
+            int length = maxR - minR + 1;
+            for(int r = minR; r <= maxR; ++r) {
+                lastNode.setCell(r, minC, '.');
+            }
+            for(int r = actualHeight - length; r < actualHeight; ++r) {
+                lastNode.setCell(r, minC, 'P');
+            }
+        }
+        else if(exitRow == -1) { 
+            int length = maxR - minR + 1;
+            for(int r = minR; r <= maxR; ++r) {
+                lastNode.setCell(r, minC, '.');
+            }
+            for(int r = 0; r < length; ++r) {
+                lastNode.setCell(r, minC, 'P');
+            }
+        }
+
+        moveCount++;
+        System.out.println("Gerakan " + moveCount + ": Keluar");
+        lastNode.printGrid();
+        System.out.println();
     }
 
     public void solve() {

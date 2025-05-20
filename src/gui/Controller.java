@@ -44,11 +44,11 @@ public class Controller {
         headerLabel.getStyleClass().add("header-label");
 
         algorithmSelector = new ComboBox<>();
-        algorithmSelector.getItems().addAll("UCS", "GBFS", "A*");
+        algorithmSelector.getItems().addAll("UCS", "GBFS", "A*", "IDS");
         algorithmSelector.setPromptText("Select Algorithm");
 
         heuristicSelector = new ComboBox<>();
-        heuristicSelector.getItems().addAll("None", "Manhattan", "Blocking Cars");
+        heuristicSelector.getItems().addAll("Distance", "Blocking + Distance");
         heuristicSelector.setPromptText("Select Heuristic");
 
         HBox controlsGroup = new HBox(20);
@@ -138,14 +138,16 @@ public class Controller {
             char[][] board = InputParser.readInput(fileName, ukuran, exitPos);
 
             if (algorithm.equals("UCS")) {
-                SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
+                SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
                 solver.solve();
             } else if (algorithm.equals("GBFS")) {
-                SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
+                SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
                 solver.solve();
             } else if (algorithm.equals("A*")) {
-                SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], inputFileName.replace(".txt", ""));
+                SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
                 solver.solve();
+            } else if (algorithm.equals("IDS")) {
+                SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
             } else {
                 moveCountLabel.setText("Algorithm not supported.");
                 return;
