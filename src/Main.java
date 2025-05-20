@@ -18,8 +18,9 @@ public class Main {
             // }
 
             // SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
-            SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 0);
+            // SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 0);
             // SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+            SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
 
             solver.solve();
         } catch (IOException e) {
