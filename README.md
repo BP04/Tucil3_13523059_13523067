@@ -1,8 +1,23 @@
-# Tucil3_13523059_13523067
+# Rush Hour Heuristic Solver
 
-How to run
+Berikut adalah repositori yang dibuat untuk pemenuhan tugas kecil 3 IF2211 Strategi Algoritma. Repositori memuat program-program yang mampu menyelesaikan puzzle Rush Hour.
+
+## Installation
+
+- Java
+- JavaFX
+
+## How to run
 
 ```bash
-make
-java -cp bin Main
+javac --module-path "JAVAFX PATH" --add-modules javafx.controls,javafx.fxml -d bin src\gui\*.java src\model\*.java src\Main.java
+
+java --module-path "JAVAFX PATH" --add-modules javafx.controls,javafx.fxml -cp bin gui.MainApp
 ```
+
+```JAVAFX PATH``` adalah absolute path dari JavaFX SDK di komputer Anda
+
+## Contributor
+
+- Jessica Allen - 13523059
+- Benedict Presley - 13523067
