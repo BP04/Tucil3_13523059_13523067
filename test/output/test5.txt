@@ -1,0 +1,23 @@
+Total moves: 3
+
+
+....
+..A.
+PPA.
+....
+
+
+Move A up 1
+..A.
+..A.
+..PP
+....
+
+
+Move A up 1
+..A.
+..A.
+..PP
+....
+
+

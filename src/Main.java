@@ -3,7 +3,7 @@ import model.*;
 
 public class Main {
     public static void main(String[] args) {
-        String fileName = "test/input/test1.txt";
+        String fileName = "test/input/test5.txt";
         int[] ukuran = new int[2];
         int[] exitPos = new int[2];
 
@@ -21,10 +21,10 @@ public class Main {
 
             System.out.println("Output file: " + fileName);
 
-            SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1, fileName);
-            // SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 0);
-            // SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
-            // SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+            // SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1, fileName);
+            // SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 0, fileName);
+            // SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], fileName);
+            SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], fileName);
 
             solver.solve();
         } catch (IOException e) {

@@ -1,0 +1,23 @@
+Total moves: 3
+
+
+..P.
+..P.
+.AA.
+....
+
+
+Move A left 1
+....
+....
+AAP.
+..P.
+
+
+Move A left 1
+....
+....
+AAP.
+..P.
+
+
