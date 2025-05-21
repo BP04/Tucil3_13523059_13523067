@@ -1,4 +1,4 @@
-Total moves: 50
+Total moves: 102
 
 
 ABB.F.
@@ -9,34 +9,43 @@ EEEG.M
 IIHJJ.
 
 
-Move M up 1
-ABB.FM
-ACD.FM
-ACDPPM
-EEEG..
-..HGLL
-IIHJJ.
-
-
 Move J right 1
-ABB.FM
+ABB.F.
 ACD.FM
 ACDPPM
-EEEG..
+EEEG.M
 ..HGLL
 IIH.JJ
 
 
 Move G down 1
-ABB.FM
+ABB.F.
 ACD.FM
 ACDPPM
-EEE...
+EEE..M
 ..HGLL
 IIHGJJ
 
 
-Move E right 3
+Move E right 2
+ABB.F.
+ACD.FM
+ACDPPM
+..EEEM
+..HGLL
+IIHGJJ
+
+
+Move M up 1
+ABB.FM
+ACD.FM
+ACDPPM
+..EEE.
+..HGLL
+IIHGJJ
+
+
+Move E right 1
 ABB.FM
 ACD.FM
 ACDPPM
@@ -45,25 +54,25 @@ ACDPPM
 IIHGJJ
 
 
-Move C down 2
-ABB.FM
-A.D.FM
-A.DPPM
-.C.EEE
-.CHGLL
-IIHGJJ
-
-
 Move H up 1
 ABB.FM
-A.D.FM
-A.DPPM
-.CHEEE
-.CHGLL
+ACD.FM
+ACDPPM
+..HEEE
+..HGLL
 II.GJJ
 
 
 Move I right 1
+ABB.FM
+ACD.FM
+ACDPPM
+..HEEE
+..HGLL
+.IIGJJ
+
+
+Move C down 2
 ABB.FM
 A.D.FM
 A.DPPM
@@ -81,16 +90,178 @@ ACHGLL
 AIIGJJ
 
 
-Move B left 1
-BB..FM
+Move C up 1
+.BB.FM
 ..D.FM
-..DPPM
+.CDPPM
 ACHEEE
-ACHGLL
+A.HGLL
 AIIGJJ
 
 
+Move A up 1
+.BB.FM
+..D.FM
+ACDPPM
+ACHEEE
+A.HGLL
+.IIGJJ
+
+
+Move I left 1
+.BB.FM
+..D.FM
+ACDPPM
+ACHEEE
+A.HGLL
+II.GJJ
+
+
+Move H down 1
+.BB.FM
+..D.FM
+ACDPPM
+AC.EEE
+A.HGLL
+IIHGJJ
+
+
+Move E left 1
+.BB.FM
+..D.FM
+ACDPPM
+ACEEE.
+A.HGLL
+IIHGJJ
+
+
+Move C down 1
+.BB.FM
+..D.FM
+A.DPPM
+ACEEE.
+ACHGLL
+IIHGJJ
+
+
+Move A up 1
+.BB.FM
+A.D.FM
+A.DPPM
+ACEEE.
+.CHGLL
+IIHGJJ
+
+
+Move E right 1
+.BB.FM
+A.D.FM
+A.DPPM
+AC.EEE
+.CHGLL
+IIHGJJ
+
+
+Move H up 1
+.BB.FM
+A.D.FM
+A.DPPM
+ACHEEE
+.CHGLL
+II.GJJ
+
+
+Move B left 1
+BB..FM
+A.D.FM
+A.DPPM
+ACHEEE
+.CHGLL
+II.GJJ
+
+
+Move I right 1
+BB..FM
+A.D.FM
+A.DPPM
+ACHEEE
+.CHGLL
+.IIGJJ
+
+
+Move C up 1
+BB..FM
+A.D.FM
+ACDPPM
+ACHEEE
+..HGLL
+.IIGJJ
+
+
 Move D up 1
+BBD.FM
+A.D.FM
+AC.PPM
+ACHEEE
+..HGLL
+.IIGJJ
+
+
+Move I left 1
+BBD.FM
+A.D.FM
+AC.PPM
+ACHEEE
+..HGLL
+II.GJJ
+
+
+Move H down 1
+BBD.FM
+A.D.FM
+AC.PPM
+AC.EEE
+..HGLL
+IIHGJJ
+
+
+Move C down 1
+BBD.FM
+A.D.FM
+A..PPM
+AC.EEE
+.CHGLL
+IIHGJJ
+
+
+Move H up 2
+BBD.FM
+A.D.FM
+A.HPPM
+ACHEEE
+.C.GLL
+II.GJJ
+
+
+Move I right 1
+BBD.FM
+A.D.FM
+A.HPPM
+ACHEEE
+.C.GLL
+.IIGJJ
+
+
+Move A down 2
+BBD.FM
+..D.FM
+..HPPM
+ACHEEE
+AC.GLL
+AIIGJJ
+
+
+Move H down 1
 BBD.FM
 ..D.FM
 ...PPM
@@ -117,8 +288,17 @@ ACHGLL
 AIIGJJ
 
 
+Move B right 2
+..BBFM
+..D.FM
+PPD..M
+ACHEEE
+ACHGLL
+AIIGJJ
+
+
 Move F down 1
-BB...M
+..BB.M
 ..D.FM
 PPD.FM
 ACHEEE
@@ -126,7 +306,7 @@ ACHGLL
 AIIGJJ
 
 
-Move B right 3
+Move B right 1
 ...BBM
 ..D.FM
 PPD.FM
@@ -162,133 +342,313 @@ A.PPFM
 .IIGJJ
 
 
-Move C up 3
-ACDBBM
-ACD.FM
-A.PPFM
-..HEEE
-..HGLL
-.IIGJJ
-
-
-Move P left 1
-ACDBBM
-ACD.FM
-APP.FM
-..HEEE
-..HGLL
-.IIGJJ
-
-
 Move I left 1
-ACDBBM
-ACD.FM
-APP.FM
-..HEEE
-..HGLL
+A.DBBM
+A.D.FM
+A.PPFM
+.CHEEE
+.CHGLL
+II.GJJ
+
+
+Move A down 2
+..DBBM
+..D.FM
+A.PPFM
+ACHEEE
+ACHGLL
+II.GJJ
+
+
+Move C up 2
+..DBBM
+.CD.FM
+ACPPFM
+A.HEEE
+A.HGLL
 II.GJJ
 
 
 Move H down 1
-ACDBBM
-ACD.FM
-APP.FM
-...EEE
-..HGLL
+..DBBM
+.CD.FM
+ACPPFM
+A..EEE
+A.HGLL
 IIHGJJ
 
 
-Move E left 3
-ACDBBM
-ACD.FM
-APP.FM
-EEE...
-..HGLL
+Move E left 2
+..DBBM
+.CD.FM
+ACPPFM
+AEEE..
+A.HGLL
 IIHGJJ
 
 
 Move M down 1
-ACDBB.
-ACD.FM
-APP.FM
-EEE..M
-..HGLL
+..DBB.
+.CD.FM
+ACPPFM
+AEEE.M
+A.HGLL
+IIHGJJ
+
+
+Move C up 1
+.CDBB.
+.CD.FM
+A.PPFM
+AEEE.M
+A.HGLL
 IIHGJJ
 
 
 Move B right 1
+.CD.BB
+.CD.FM
+A.PPFM
+AEEE.M
+A.HGLL
+IIHGJJ
+
+
+Move F down 1
+.CD.BB
+.CD..M
+A.PPFM
+AEEEFM
+A.HGLL
+IIHGJJ
+
+
+Move A up 2
 ACD.BB
-ACD.FM
+ACD..M
+A.PPFM
+.EEEFM
+..HGLL
+IIHGJJ
+
+
+Move E left 1
+ACD.BB
+ACD..M
+A.PPFM
+EEE.FM
+..HGLL
+IIHGJJ
+
+
+Move P left 1
+ACD.BB
+ACD..M
 APP.FM
-EEE..M
+EEE.FM
 ..HGLL
 IIHGJJ
 
 
 Move G up 4
 ACDGBB
-ACDGFM
+ACDG.M
 APP.FM
-EEE..M
+EEE.FM
 ..H.LL
 IIH.JJ
 
 
 Move P right 1
 ACDGBB
-ACDGFM
+ACDG.M
 A.PPFM
-EEE..M
+EEE.FM
 ..H.LL
 IIH.JJ
+
+
+Move L left 1
+ACDGBB
+ACDG.M
+A.PPFM
+EEE.FM
+..HLL.
+IIH.JJ
+
+
+Move J left 1
+ACDGBB
+ACDG.M
+A.PPFM
+EEE.FM
+..HLL.
+IIHJJ.
+
+
+Move M down 2
+ACDGBB
+ACDG..
+A.PPF.
+EEE.FM
+..HLLM
+IIHJJM
+
+
+Move F up 1
+ACDGBB
+ACDGF.
+A.PPF.
+EEE..M
+..HLLM
+IIHJJM
 
 
 Move E right 2
 ACDGBB
-ACDGFM
-A.PPFM
+ACDGF.
+A.PPF.
 ..EEEM
-..H.LL
+..HLLM
+IIHJJM
+
+
+Move A down 2
+.CDGBB
+.CDGF.
+A.PPF.
+A.EEEM
+A.HLLM
+IIHJJM
+
+
+Move M up 2
+.CDGBB
+.CDGFM
+A.PPFM
+A.EEEM
+A.HLL.
+IIHJJ.
+
+
+Move J right 1
+.CDGBB
+.CDGFM
+A.PPFM
+A.EEEM
+A.HLL.
+IIH.JJ
+
+
+Move L right 1
+.CDGBB
+.CDGFM
+A.PPFM
+A.EEEM
+A.H.LL
 IIH.JJ
 
 
 Move C down 3
-A.DGBB
-A.DGFM
+..DGBB
+..DGFM
 A.PPFM
-.CEEEM
-.CH.LL
+ACEEEM
+ACH.LL
 IIH.JJ
+
+
+Move J left 1
+..DGBB
+..DGFM
+A.PPFM
+ACEEEM
+ACH.LL
+IIHJJ.
 
 
 Move P left 1
-A.DGBB
-A.DGFM
+..DGBB
+..DGFM
 APP.FM
-.CEEEM
-.CH.LL
-IIH.JJ
+ACEEEM
+ACH.LL
+IIHJJ.
 
 
 Move G down 1
-A.D.BB
-A.DGFM
+..D.BB
+..DGFM
 APPGFM
-.CEEEM
-.CH.LL
-IIH.JJ
+ACEEEM
+ACH.LL
+IIHJJ.
 
 
 Move B left 1
-A.DBB.
-A.DGFM
+..DBB.
+..DGFM
 APPGFM
-.CEEEM
-.CH.LL
+ACEEEM
+ACH.LL
+IIHJJ.
+
+
+Move J right 1
+..DBB.
+..DGFM
+APPGFM
+ACEEEM
+ACH.LL
 IIH.JJ
 
 
-Move M up 1
+Move L left 1
+..DBB.
+..DGFM
+APPGFM
+ACEEEM
+ACHLL.
+IIH.JJ
+
+
+Move A up 1
+..DBB.
+A.DGFM
+APPGFM
+ACEEEM
+.CHLL.
+IIH.JJ
+
+
+Move M down 1
+..DBB.
+A.DGF.
+APPGFM
+ACEEEM
+.CHLLM
+IIH.JJ
+
+
+Move A up 1
+A.DBB.
+A.DGF.
+APPGFM
+.CEEEM
+.CHLLM
+IIH.JJ
+
+
+Move M up 2
+A.DBBM
+A.DGFM
+APPGFM
+.CEEE.
+.CHLL.
+IIH.JJ
+
+
+Move L right 1
 A.DBBM
 A.DGFM
 APPGFM
@@ -297,13 +657,31 @@ APPGFM
 IIH.JJ
 
 
+Move J left 1
+A.DBBM
+A.DGFM
+APPGFM
+.CEEE.
+.CH.LL
+IIHJJ.
+
+
 Move E right 1
 A.DBBM
 A.DGFM
 APPGFM
 .C.EEE
 .CH.LL
-IIH.JJ
+IIHJJ.
+
+
+Move L left 1
+A.DBBM
+A.DGFM
+APPGFM
+.C.EEE
+.CHLL.
+IIHJJ.
 
 
 Move H up 1
@@ -311,11 +689,11 @@ A.DBBM
 A.DGFM
 APPGFM
 .CHEEE
-.CH.LL
-II..JJ
+.CHLL.
+II.JJ.
 
 
-Move L left 1
+Move J right 1
 A.DBBM
 A.DGFM
 APPGFM
@@ -333,13 +711,67 @@ APPGFM
 .II.JJ
 
 
-Move A down 3
+Move L right 1
+A.DBBM
+A.DGFM
+APPGFM
+.CHEEE
+.CH.LL
+.II.JJ
+
+
+Move J left 1
+A.DBBM
+A.DGFM
+APPGFM
+.CHEEE
+.CH.LL
+.IIJJ.
+
+
+Move A down 2
+..DBBM
+..DGFM
+APPGFM
+ACHEEE
+ACH.LL
+.IIJJ.
+
+
+Move I left 1
+..DBBM
+..DGFM
+APPGFM
+ACHEEE
+ACH.LL
+II.JJ.
+
+
+Move J right 1
+..DBBM
+..DGFM
+APPGFM
+ACHEEE
+ACH.LL
+II..JJ
+
+
+Move I right 2
+..DBBM
+..DGFM
+APPGFM
+ACHEEE
+ACH.LL
+..IIJJ
+
+
+Move A down 1
 ..DBBM
 ..DGFM
 .PPGFM
 ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
 Move P left 1
@@ -347,8 +779,8 @@ Move P left 1
 ..DGFM
 PP.GFM
 ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
 Move D down 1
@@ -356,95 +788,113 @@ Move D down 1
 ..DGFM
 PPDGFM
 ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
-Move B left 3
-BB...M
+Move B left 1
+..BB.M
 ..DGFM
 PPDGFM
 ACHEEE
-ACHLL.
-AII.JJ
-
-
-Move D up 1
-BBD..M
-..DGFM
-PP.GFM
-ACHEEE
-ACHLL.
-AII.JJ
-
-
-Move G up 1
-BBDG.M
-..DGFM
-PP..FM
-ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
 Move F up 1
+..BBFM
+..DGFM
+PPDG.M
+ACHEEE
+ACH.LL
+A.IIJJ
+
+
+Move B left 2
+BB..FM
+..DGFM
+PPDG.M
+ACHEEE
+ACH.LL
+A.IIJJ
+
+
+Move D up 1
+BBD.FM
+..DGFM
+PP.G.M
+ACHEEE
+ACH.LL
+A.IIJJ
+
+
+Move G up 1
 BBDGFM
 ..DGFM
 PP...M
 ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
-Move P right 1
+Move P right 3
 BBDGFM
 ..DGFM
-.PP..M
+...PPM
 ACHEEE
-ACHLL.
-AII.JJ
+ACH.LL
+A.IIJJ
 
 
 Move A up 2
 BBDGFM
 A.DGFM
-APP..M
+A..PPM
 ACHEEE
-.CHLL.
-.II.JJ
+.CH.LL
+..IIJJ
 
 
-Move I left 1
+Move I left 2
 BBDGFM
 A.DGFM
-APP..M
+A..PPM
 ACHEEE
-.CHLL.
+.CH.LL
 II..JJ
-
-
-Move H down 1
-BBDGFM
-A.DGFM
-APP..M
-AC.EEE
-.CHLL.
-IIH.JJ
-
-
-Move E left 1
-BBDGFM
-A.DGFM
-APP..M
-ACEEE.
-.CHLL.
-IIH.JJ
 
 
 Move J left 1
 BBDGFM
 A.DGFM
-APP..M
+A..PPM
+ACHEEE
+.CH.LL
+II.JJ.
+
+
+Move L left 1
+BBDGFM
+A.DGFM
+A..PPM
+ACHEEE
+.CHLL.
+II.JJ.
+
+
+Move H down 1
+BBDGFM
+A.DGFM
+A..PPM
+AC.EEE
+.CHLL.
+IIHJJ.
+
+
+Move E left 1
+BBDGFM
+A.DGFM
+A..PPM
 ACEEE.
 .CHLL.
 IIHJJ.
@@ -453,7 +903,16 @@ IIHJJ.
 Move M down 3
 BBDGF.
 A.DGF.
-APP...
+A...PP
+ACEEEM
+.CHLLM
+IIHJJM
+
+
+Move M down 3
+BBDGF.
+A.DGF.
+A...PP
 ACEEEM
 .CHLLM
 IIHJJM

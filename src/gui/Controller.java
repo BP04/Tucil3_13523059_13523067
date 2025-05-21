@@ -16,6 +16,7 @@ import java.util.*;
 import model.SolverAstar;
 import model.SolverUCS;
 import model.SolverGBFS;
+import model.SolverIDS;
 
 public class Controller {
     private final BorderPane rootPane;
@@ -67,8 +68,9 @@ public class Controller {
         startButton = new Button("Start");
         startButton.setOnAction(e -> {
             selectedAlgorithm = algorithmSelector.getValue();
+            String selectedHeuristic = heuristicSelector.getValue();
             if (inputFile != null && selectedAlgorithm != null) {
-                runSolverAndLoadOutput(inputFile.getName(), selectedAlgorithm);
+                runSolverAndLoadOutput(inputFile.getName(), selectedAlgorithm, selectedHeuristic);
             } else {
                 moveCountLabel.setText("Please select algorithm and input file.");
             }
@@ -126,7 +128,7 @@ public class Controller {
         }
     }
 
-    private void runSolverAndLoadOutput(String inputFileName, String algorithm) {
+    private void runSolverAndLoadOutput(String inputFileName, String algorithm, String heuristic) {
         try {
             String inputFolder = "test/input/";
             String outputFolder = "test/output/";
@@ -137,17 +139,31 @@ public class Controller {
 
             char[][] board = InputParser.readInput(fileName, ukuran, exitPos);
 
+            int heuristicType = -1;
+
+            if (heuristic.equals("Distance")) {
+                heuristicType = 0;
+            } else if (heuristic.equals("Blocking + Distance")) {
+                heuristicType = 1;
+            } else {
+                moveCountLabel.setText("Heuristic not supported.");
+                return;
+            }
+
+            fileName = outputFolder + inputFileName;
+
             if (algorithm.equals("UCS")) {
-                SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+                SolverUCS solver = new SolverUCS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], fileName);
                 solver.solve();
             } else if (algorithm.equals("GBFS")) {
-                SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
+                SolverGBFS solver = new SolverGBFS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1, fileName);
                 solver.solve();
             } else if (algorithm.equals("A*")) {
-                SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1);
+                SolverAstar solver = new SolverAstar(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], 1, fileName);
                 solver.solve();
             } else if (algorithm.equals("IDS")) {
-                SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1]);
+                SolverIDS solver = new SolverIDS(board, ukuran[0], ukuran[1], exitPos[0], exitPos[1], fileName);
+                solver.solve();
             } else {
                 moveCountLabel.setText("Algorithm not supported.");
                 return;

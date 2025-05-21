@@ -1,5 +1,6 @@
 package model;
 
+import java.io.PrintWriter;
 import java.util.Arrays;
 public class Node {
     private final char[][] grid;
@@ -41,6 +42,10 @@ public class Node {
         System.out.println(move);
     }
 
+    public void printMove(PrintWriter writer) {
+        writer.println(move);
+    }
+
     public void printGrid() {
         for(int i = 0; i < grid.length; ++i) {
             for(int j = 0; j < grid[i].length; ++j) {
@@ -49,6 +54,16 @@ public class Node {
             System.out.println();
         }
         System.out.println();
+    }
+
+    public void printGrid(PrintWriter writer) {
+        for(int i = 0; i < grid.length; ++i) {
+            for(int j = 0; j < grid[i].length; ++j) {
+                writer.print(grid[i][j]);
+            }
+            writer.println();
+        }
+        writer.println();
     }
 
     public void setMove(String move) {

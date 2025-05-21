@@ -49,3 +49,5 @@ obj/
 /vendor
 
 bin/
+
+*.class

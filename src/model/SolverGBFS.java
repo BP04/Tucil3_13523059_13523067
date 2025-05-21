@@ -1,5 +1,8 @@
 package model;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,8 +20,9 @@ public class SolverGBFS {
     int nodeID;
     Heuristic heuristic;
     int heuristicType = 0; // 0: distance, 1: blocker-distance
+    String filename;
 
-    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, int heuristicType) {
+    public SolverGBFS(char[][] startingGrid, int actualWidth, int actualHeight, int exitRow, int exitCol, int heuristicType, String filename) {
         this.startingGrid = new char[startingGrid.length][];
         for (int i = 0; i < startingGrid.length; ++i) {
             this.startingGrid[i] = Arrays.copyOf(startingGrid[i], startingGrid[i].length);
@@ -32,6 +36,7 @@ public class SolverGBFS {
         nodeID = 0;
         this.heuristicType = heuristicType;
         heuristic = new Heuristic(actualHeight, actualWidth, exitRow, exitCol, heuristicType);
+        this.filename = filename;
     }
 
     public boolean isSolved(Node b) {
@@ -181,6 +186,83 @@ public class SolverGBFS {
         System.out.println();
     }
 
+    public void showSolutionToFile(Node b) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(filename))) {
+            ArrayList<Node> path = new ArrayList<>();
+            Node currentNode = b;
+            while (currentNode.getParentID() != -1) {
+                path.add(currentNode);
+                currentNode = nodes.get(currentNode.getParentID());
+            }
+            path.add(currentNode);
+
+            out.println("Total moves: " + (path.size() + 1));
+            out.println();
+
+            Collections.reverse(path);
+            for (Node node : path) {
+                node.printMove(out);
+                node.printGrid(out);
+                out.println();
+            }
+
+            Node lastNode = path.get(path.size() - 1);
+
+            int minR = actualHeight, maxR = -1, minC = actualWidth, maxC = -1;
+            for (int i = 0; i < actualHeight; ++i) {
+                for (int j = 0; j < actualWidth; ++j) {
+                    if (lastNode.getCell(i, j) == 'P') {
+                        minR = Math.min(minR, i);
+                        maxR = Math.max(maxR, i);
+                        minC = Math.min(minC, j);
+                        maxC = Math.max(maxC, j);
+                    }
+                }
+            }
+
+            if (exitCol == actualWidth) {
+                int length = maxC - minC + 1;
+                for (int c = minC; c <= maxC; ++c) {
+                    lastNode.setCell(minR, c, '.');
+                }
+                for (int c = actualWidth - length; c < actualWidth; ++c) {
+                    lastNode.setCell(minR, c, 'P');
+                }
+            } else if (exitCol == -1) {
+                int length = maxC - minC + 1;
+                for (int c = minC; c <= maxC; ++c) {
+                    lastNode.setCell(minR, c, '.');
+                }
+                for (int c = 0; c < length; ++c) {
+                    lastNode.setCell(minR, c, 'P');
+                }
+            } else if (exitRow == actualHeight) {
+                int length = maxR - minR + 1;
+                for (int r = minR; r <= maxR; ++r) {
+                    lastNode.setCell(r, minC, '.');
+                }
+                for (int r = actualHeight - length; r < actualHeight; ++r) {
+                    lastNode.setCell(r, minC, 'P');
+                }
+            } else if (exitRow == -1) {
+                int length = maxR - minR + 1;
+                for (int r = minR; r <= maxR; ++r) {
+                    lastNode.setCell(r, minC, '.');
+                }
+                for (int r = 0; r < length; ++r) {
+                    lastNode.setCell(r, minC, 'P');
+                }
+            }
+
+            lastNode.printMove(out);
+            lastNode.printGrid(out);
+            out.println();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void solve() {
         PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> a.getH() - b.getH());
 
@@ -252,10 +334,10 @@ public class SolverGBFS {
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < i) {
-                                        newNode.setMove("move " + pieceID + " up " + (i - k));
+                                        newNode.setMove("Move " + pieceID + " up " + (i - k));
                                     }
                                     else {
-                                        newNode.setMove("move " + pieceID + " down " + (k - i));
+                                        newNode.setMove("Move " + pieceID + " down " + (k - i));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);
@@ -310,10 +392,10 @@ public class SolverGBFS {
                                     newNode.setID(nodeID);
                                     newNode.setParentID(currentNode.getID());
                                     if(k < j) {
-                                        newNode.setMove("move " + pieceID + " left " + (j - k));
+                                        newNode.setMove("Move " + pieceID + " left " + (j - k));
                                     }
                                     else {
-                                        newNode.setMove("move " + pieceID + " right " + (k - j));
+                                        newNode.setMove("Move " + pieceID + " right " + (k - j));
                                     }
                                     
                                     nodeToID.put(newNodeKey, nodeID);
@@ -339,6 +421,7 @@ public class SolverGBFS {
 
         if (solutionNodeID != -1) {
             showSolution(nodes.get(solutionNodeID));
+            showSolutionToFile(nodes.get(solutionNodeID));
         } else {
             System.out.println("No solution found.");
         }
